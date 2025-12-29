@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Jean Auto Import RD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f2f2f2;margin:0}
+header{background:#0b6623;color:#fff;padding:15px;text-align:center}
+nav a{color:#fff;margin:10px;text-decoration:none;font-weight:bold}
+.container{padding:15px}
+input,button{width:100%;padding:10px;margin-bottom:10px}
+button{background:#0b6623;color:#fff;border:none}
+.result{background:#fff;padding:10px;border-radius:5px}
+</style>
+</head>
+<body>
+
+<header>
+<h2>Jean Auto Import RD</h2>
+<nav>
+<a href="index.html">Calculadora</a>
+<a href="vehiculos.html">Vehículos</a>
+</nav>
+</header>
+
+<div class="container">
+<input id="precio" placeholder="Precio Subasta USD">
+<input id="fee" placeholder="Fee Subasta USD">
+<input id="flete" placeholder="Flete USD">
+<input id="seguro" placeholder="Seguro USD">
+<input id="arancel" placeholder="Arancel %">
+<input id="selectivo" placeholder="Selectivo %">
+<input id="tasa" placeholder="Tasa USD/DOP">
+
+<button onclick="calc()">Calcular</button>
+
+<div class="result" id="res"></div>
+</div>
+
+<script>
+function calc(){
+let p=+precio.value,f=+fee.value,fl=+flete.value,s=+seguro.value
+let a=+arancel.value/100,sel=+selectivo.value/100,t=+tasa.value
+let cif=p+f+fl+s
+let ar=cif*a
+let se=cif*sel
+let it=(cif+ar+se)*0.18
+let itDOP=it*t
+let total=cif+ar+se+it
+res.innerHTML=`
+<b>CIF USD:</b> $${cif.toFixed(2)}<br>
+<b>Arancel USD:</b> $${ar.toFixed(2)}<br>
+<b>Selectivo USD:</b> $${se.toFixed(2)}<br>
+<b>ITBIS DOP:</b> RD$ ${itDOP.toFixed(2)}<br>
+<b>Total USD:</b> $${total.toFixed(2)}
+`;
+}
+</script>
+
+</body>
+</html>
